@@ -35,6 +35,9 @@ public class Record extends Model {
     @Lob
     public String note;
 
+    @Lob
+    public byte[] photo;
+
     public static Model.Finder<Long, Record> find = 
         new Model.Finder(Long.class, Record.class);
     public static List<Record> query(

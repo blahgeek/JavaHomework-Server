@@ -12,6 +12,7 @@ create table record (
   speed                     double,
   accuracy                  double,
   note                      clob,
+  photo                     blob,
   time                      timestamp not null,
   constraint pk_record primary key (id))
 ;

@@ -9,9 +9,11 @@ GET     /login                      controllers.Application.login()
 POST    /auth                       controllers.Application.auth()
 GET     /logout                     controllers.Application.logout()
 GET     /signup                     controllers.Application.signup()
+GET     /getphoto/:id.jpg           controllers.Application.getPhoto(id: Long)
 
 GET     /api/getuserinfo            controllers.Api.getUserInfo()
 POST    /api/postrecord             controllers.Api.postRecord()
+POST    /api/addphoto/:id           controllers.Api.addPhoto(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

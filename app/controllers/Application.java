@@ -39,6 +39,14 @@ public class Application extends Controller {
         return redirect(routes.Application.login());
     }
 
+    @Security.Authenticated(Secured.class)
+    public static Result getPhoto(Long id){
+        Record rec = Record.findById(id);
+        if(rec == null || !rec.user.username.equals(request().username())) 
+            return badRequest();
+        return ok(rec.photo).as("image/jpeg");
+    }
+
     public static Result signup() {
         return TODO;
     }
