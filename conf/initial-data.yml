@@ -1,0 +1,5 @@
+users:
+
+    - !!models.User
+        username:   test
+        password:   secret
