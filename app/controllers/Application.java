@@ -23,10 +23,22 @@ public class Application extends Controller {
     public static Result auth() {
         Form<User> form = loginForm.bindFromRequest();
         if(form.hasErrors() || 
-                User.auth(form.get().username, form.get().password) == null)
-            return badRequest("invalid");
+                User.auth(form.get().username, form.get().password) == null){
+            flash("error", "Invalid");
+            return redirect(routes.Application.login());
+        }
         session("username", form.get().username);
         return redirect(routes.Application.index());
+    }
+
+    public static Result logout() {
+        session().clear();
+        flash("info", "You are logged out");
+        return redirect(routes.Application.login());
+    }
+
+    public static Result signup() {
+        return TODO;
     }
   
 }
