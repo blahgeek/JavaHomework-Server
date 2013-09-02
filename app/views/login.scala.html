@@ -1,21 +1,32 @@
 @(loginForm: Form[models.User])
 @import helper._
+@implicitField = @{FieldConstructor(inputTemplate.f)}
 
-@main("Please login:") {
+@main("Please login:", true) {
 
-    @if(flash.contains("error")){
-        <p>Error: @flash.get("error")</p>
-    }
-    @if(flash.contains("info")){
-        <p>Info: @flash.get("info")</p>
-    }
+<div class="container-narrow" style="max-width: 350px; margin-left: 70px">
     
-    @form(routes.Application.auth()){
+    @form(routes.Application.auth(), 'class -> "form-horizontal"){
+        <div class="control-group">
+            <div class="controls">
+            @if(flash.contains("error")){
+                <div class="alert alert-error" style="width: 171px; margin-bottom: 0">@flash.get("error")</div>
+            }
+            @if(flash.contains("info")){
+                <div class="alert alert-info" style="width: 171px; margin-bottom: 0">@flash.get("info")</div>
+            }
+            </div>
+        </div>
         @inputText(loginForm("username"))
         @inputPassword(loginForm("password"))
-        <input type="submit" value="Submit">
+        <div class="control-group">
+            <div class="controls">
+            <input type="submit" value="Submit" 
+                class="btn btn-primary btn-large" style="width:220px;">
+            </div>
+        </div>
     }
 
-    <p><a href="@routes.Application.signup">Signup</a></p>
+</div>
     
 }

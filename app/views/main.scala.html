@@ -1,4 +1,4 @@
-@(title: String)(content: Html)
+@(title: String, login: Boolean)(content: Html)
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,15 +17,20 @@
         <ul class="nav nav-pills pull-right">
           <li class="active"><a href="#">Home</a></li>
           <li><a href="#">About</a></li>
-          <li><a href="@routes.Application.logout()">Logout</a></li>
+          @if(login){
+          <li><a href="@routes.Application.signup()">SignUp</a></li>
+          } else{
+          <li><a href="@routes.Application.logout()">LogOut</a></li>
+          }
         </ul>
         <h3 class="muted">@title</h3>
       </div>
-      <div> @content </div>
+      <div style="margin-top: 25px"> @content </div>
       <hr>
 
       <div class="footer">
-        <p>&copy; Company 2013</p>
+        <p>&copy; <a href="blahgeek.com">BlahGeek</a> &amp; 
+                  <a href="ppwwyyxx.com">ppwwyyxx</a></p>
       </div>
     </div>
   </body>
