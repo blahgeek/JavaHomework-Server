@@ -11,7 +11,9 @@ public class Application extends Controller {
   
     @Security.Authenticated(Secured.class)
     public static Result index() {
-        return ok(index.render("Your name is " + session().get("username")));
+        User user = User.findName(request().username());
+        return ok(index.render(user.username, 
+                    Record.query(user, null, null)));
     }
 
     static Form<User> loginForm = Form.form(User.class);

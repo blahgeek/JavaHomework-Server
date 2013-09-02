@@ -27,18 +27,19 @@ public class Api extends Controller {
     public static Result postRecord() {
         JsonNode json = request().body().asJson();
         User user = User.findName(request().username());
-        Record rec = Record.create(user);
+        Record rec = new Record();
+        rec.user = user;
 
-        Number alt = json.findPath("altitude").getNumberValue();
-        if(alt != null) rec.altitude = alt.doubleValue();
-        Number lat = json.findPath("latitude").getNumberValue();
-        if(lat != null) rec.latitude = lat.doubleValue();
-        Number lon = json.findPath("longtitude").getNumberValue();
-        if(lon != null) rec.longtitude = lon.doubleValue();
-        Number spe = json.findPath("speed").getNumberValue();
-        if(spe != null) rec.speed = spe.doubleValue();
-        Number acc = json.findPath("accuracy").getNumberValue();
-        if(acc != null) rec.altitude = acc.doubleValue();
+        JsonNode alt = json.get("altitude");
+        if(alt != null) rec.altitude = alt.getDoubleValue();
+        JsonNode lat = json.get("latitude");
+        if(lat != null) rec.latitude = lat.getDoubleValue();
+        JsonNode lon = json.get("longtitude");
+        if(lon != null) rec.longtitude = lon.getDoubleValue();
+        JsonNode spe = json.get("speed");
+        if(spe != null) rec.speed = spe.getDoubleValue();
+        JsonNode acc = json.get("accuracy");
+        if(acc != null) rec.altitude = acc.getDoubleValue();
         
         rec.save();
         ObjectNode result = Json.newObject();

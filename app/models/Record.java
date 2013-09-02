@@ -48,11 +48,5 @@ public class Record extends Model {
     public static Record findById(Long i){
         return find.ref(i);
     }
-    public static Record create(User u){
-        Record ret = new Record();
-        ret.user = u;
-        ret.save();
-        return ret;
-    }
 }
 

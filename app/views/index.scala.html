@@ -1,8 +1,29 @@
-@(message: String)
+@(message: String, records: List[Record])
 
 @main("Welcome to Play 2.1") {
     
     <p> @message </p>
     <p><a href="@routes.Application.logout()">logout</a></p>
+
+    <table border="1">
+    <tr>
+        <td>Time</td>
+        <td>Altitude</td>
+        <td>Latitude</td>
+        <td>Longtitude</td>
+        <td>Speed</td>
+        <td>Accuracy</td>
+    </tr>
+
+    @for(rec <- records){
+        <tr>
+            <td>@rec.time</td>
+            <td>@rec.altitude</td>
+            <td>@rec.latitude</td>
+            <td>@rec.longtitude</td>
+            <td>@rec.speed</td>
+            <td>@rec.accuracy</td>
+        </tr>
+    }
     
 }
