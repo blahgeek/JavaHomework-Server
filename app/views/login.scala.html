@@ -10,10 +10,10 @@
         <div class="control-group">
             <div class="controls">
             @if(flash.contains("error")){
-                <div class="alert alert-error" style="width: 171px; margin-bottom: 0">@flash.get("error")</div>
+                <div class="alert alert-error myalert">@flash.get("error")</div>
             }
             @if(flash.contains("info")){
-                <div class="alert alert-info" style="width: 171px; margin-bottom: 0">@flash.get("info")</div>
+                <div class="alert alert-info myalert">@flash.get("info")</div>
             }
             </div>
         </div>
@@ -22,7 +22,8 @@
         <div class="control-group">
             <div class="controls">
             <input type="submit" value="Submit" 
-                class="btn btn-primary btn-large" style="width:220px;">
+                class="btn btn-primary btn-large" 
+                style="width:220px;">
             </div>
         </div>
     }
