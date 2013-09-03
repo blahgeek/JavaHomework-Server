@@ -17,8 +17,8 @@
             }
             </div>
         </div>
-        @inputText(loginForm("username"))
-        @inputPassword(loginForm("password"))
+        @inputText(loginForm("username"), '_label -> "User")
+        @inputPassword(loginForm("password"), '_label -> "Password")
         <div class="control-group">
             <div class="controls">
             <input type="submit" value="Submit" 

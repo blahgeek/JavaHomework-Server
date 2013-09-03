@@ -1,6 +1,23 @@
 @(username: String, records: List[Record])
 
 @main("Welcome, " + username + "!", false) {
+    <form class="form-inline">
+        <div class="input-prepend">
+            <span class="add-on">From</span>
+            <input type="text" value="09-01-2013" 
+                class="input-small datepicker">
+        </div>
+        <div class="input-prepend">
+            <span class="add-on">To</span>
+            <input type="text" value="09-02-3013" 
+                class="input-small datepicker">
+        </div>
+        <input type="button" value="Go!" class="btn">
+    </form>
+    
+    <script type="text/javascript">
+        $(".datepicker").datepicker();
+    </script>
     
     <table class="table">
     <tr>
