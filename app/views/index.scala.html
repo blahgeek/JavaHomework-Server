@@ -34,7 +34,7 @@
             <td>@rec.time</td>
             <td>@rec.altitude</td>
             <td>@rec.latitude</td>
-            <td>@rec.longitude</td>
+            <td>@rec.longtitude</td>
             <td>@rec.speed</td>
             <td>@rec.accuracy</td>
             <td>
@@ -74,10 +74,10 @@
     <script type="text/javascript">
       function initialize() {
         var mapOptions = {
-          @if(records.size() == 0 || records.get(0).latitude == null || records.get(0).longitude == null){
+          @if(records.size() == 0 || records.get(0).latitude == null || records.get(0).longtitude == null){
               center: new google.maps.LatLng(-34.397, 150.644),
           } else {
-              center: new google.maps.LatLng(@records.get(0).latitude, @records.get(0).longitude),
+              center: new google.maps.LatLng(@records.get(0).latitude, @records.get(0).longtitude),
           }
           zoom: 3,
           mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -85,8 +85,8 @@
         var map = new google.maps.Map(document.getElementById("map-canvas"),
             mapOptions);
         @for( rec <- records ){
-            @if(rec.latitude != null && rec.longitude != null){
-                var myLatLng = new google.maps.LatLng(@rec.latitude, @rec.longitude);
+            @if(rec.latitude != null && rec.longtitude != null){
+                var myLatLng = new google.maps.LatLng(@rec.latitude, @rec.longtitude);
                 var marker = new google.maps.Marker({position: myLatLng, map: map});
             }
         }
