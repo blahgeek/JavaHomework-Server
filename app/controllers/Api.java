@@ -31,11 +31,6 @@ public class Api extends Controller {
         result.put("message", msg);
         return ok(result);
     }
-    private static Result noerror(){
-        ObjectNode result = Json.newObject();
-        result.put("result", "ok");
-        return ok(result);
-    }
 
     @BodyParser.Of(play.mvc.BodyParser.Json.class)
     public static Result postRecord() {
@@ -55,7 +50,10 @@ public class Api extends Controller {
         JsonNode acc = json.get("accuracy");
         if(acc != null) rec.altitude = acc.getDoubleValue();
         rec.save();
-        return noerror();
+        ObjectNode result = Json.newObject();
+        result.put("result", "ok");
+        result.put("id", rec.id);
+        return ok(result);
     }
 
     @BodyParser.Of(play.mvc.BodyParser.Json.class)
@@ -70,7 +68,10 @@ public class Api extends Controller {
         byte[] bin = DatatypeConverter.parseBase64Binary(bin_s);
         rec.photo = bin;
         rec.save();
-        return noerror();
+
+        ObjectNode result = Json.newObject();
+        result.put("result", "ok");
+        return ok(result);
     }
 
 }
