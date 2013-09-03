@@ -10,6 +10,7 @@ GET     /login                      controllers.Application.login()
 POST    /auth                       controllers.Application.auth()
 GET     /logout                     controllers.Application.logout()
 GET     /signup                     controllers.Application.signup()
+POST    /postsignup                 controllers.Application.postsignup()
 GET     /getphoto/:id.jpg           controllers.Application.getPhoto(id: Long)
 
 GET     /api/getuserinfo            controllers.Api.getUserInfo()

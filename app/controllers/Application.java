@@ -76,7 +76,22 @@ public class Application extends Controller {
     }
 
     public static Result signup() {
-        return TODO;
+        return ok(signup.render(loginForm));
+    }
+
+    public static Result postsignup() {
+        Form<User> form = loginForm.bindFromRequest();
+        if(form.hasErrors()){
+            flash("error", "Invalid");
+            return redirect(routes.Application.signup());
+        }
+        if(User.findName(form.get().username) != null){
+            flash("error", "Username exists");
+            return redirect(routes.Application.signup());
+        }
+        form.get().save();
+        session("username", form.get().username);
+        return redirect(routes.Application.index());
     }
   
 }
