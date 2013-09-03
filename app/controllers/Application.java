@@ -1,4 +1,7 @@
 package controllers;
+import javax.persistence.*;
+import java.util.*;
+import java.sql.Timestamp;
 
 import play.*;
 import play.mvc.*;
@@ -8,12 +11,37 @@ import views.html.*;
 import models.*;
 
 public class Application extends Controller {
+
+    public static class Filter {
+        public String startdate;
+        public String enddate;
+    }
+    static Form<Filter> filterForm = Form.form(Filter.class);
+
+    @Security.Authenticated(Secured.class)
+    public static Result filterIndex(){
+        Form<Filter> form = filterForm.bindFromRequest();
+        Timestamp a = null, b = null;
+        try{
+            if(form.hasErrors()) throw new IllegalArgumentException();
+            a = Timestamp.valueOf(form.get().startdate+" 00:00:00");
+            b = Timestamp.valueOf(form.get().enddate+" 00:00:00");
+        } catch(IllegalArgumentException e){
+            return badRequest();
+        }
+        User user = User.findName(request().username());
+        List<Record> recs = Record.query(user, a, b);
+        return renderIndex(user, recs);
+    }
   
     @Security.Authenticated(Secured.class)
     public static Result index() {
         User user = User.findName(request().username());
-        return ok(index.render(user.username, 
-                    Record.query(user, null, null)));
+        return renderIndex(user, Record.query(user, null, null));
+    }
+
+    private static Result renderIndex(User u, List<Record> recs){
+        return ok(index.render(filterForm, u.username, recs));
     }
 
     static Form<User> loginForm = Form.form(User.class);

@@ -1,22 +1,19 @@
-@(username: String, records: List[Record])
+@(filterForm: Form[controllers.Application.Filter], 
+    username: String, records: List[Record])
 
+@import helper._
+@implicitField = @{FieldConstructor(dateTemplate.f)}
 @main("Welcome, " + username + "!", false) {
-    <form class="form-inline">
-        <div class="input-prepend">
-            <span class="add-on">From</span>
-            <input type="text" value="09-01-2013" 
-                class="input-small datepicker">
-        </div>
-        <div class="input-prepend">
-            <span class="add-on">To</span>
-            <input type="text" value="09-02-3013" 
-                class="input-small datepicker">
-        </div>
-        <input type="button" value="Go!" class="btn">
-    </form>
+    @form(routes.Application.filterIndex(), 'class -> "form-inline"){
+        @inputText(filterForm("startdate"), 
+            '_label -> "From", 'class -> "input-small datepicker")
+        @inputText(filterForm("enddate"), 
+            '_label -> "To", 'class -> "input-small datepicker")
+        <input type="submit" value="Go!" class="btn">
+    }
     
     <script type="text/javascript">
-        $(".datepicker").datepicker();
+        $(".datepicker").datepicker({format: 'yyyy-mm-dd'});
     </script>
     
     <table class="table">
