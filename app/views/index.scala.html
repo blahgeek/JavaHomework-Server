@@ -3,7 +3,7 @@
 
 @import helper._
 @implicitField = @{FieldConstructor(dateTemplate.f)}
-@main("Welcome, " + username + "!", false) {
+@main("Welcome, " + username + "!", false, "home") {
     @form(routes.Application.filterIndex(), 'class -> "form-inline"){
         @inputText(filterForm("startdate"), 
             '_label -> "From", 'class -> "input-small datepicker")

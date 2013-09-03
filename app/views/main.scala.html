@@ -1,4 +1,4 @@
-@(title: String, login: Boolean)(content: Html)
+@(title: String, login: Boolean, active: String)(content: Html)
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,10 +19,11 @@
     <div class="container-narrow">
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
+          <li @if(active.equals("home")){class="active"}><a href="@routes.Application.index()">Home</a></li>
+          <li @if(active.equals("about")){class="active"}><a href="#">About</a></li>
           @if(login){
-          <li><a href="@routes.Application.signup()">SignUp</a></li>
+          <li @if(active.equals("signup")){class="active"}>
+              <a href="@routes.Application.signup()">SignUp</a></li>
           } else{
           <li><a href="@routes.Application.logout()">LogOut</a></li>
           }
