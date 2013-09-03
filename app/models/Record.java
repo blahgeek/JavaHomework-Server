@@ -28,7 +28,7 @@ public class Record extends Model {
 
     public Double altitude;
     public Double latitude;
-    public Double longtitude;
+    public Double longitude;
     public Double speed; // meters/second
     public Double accuracy;
 

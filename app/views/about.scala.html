@@ -6,7 +6,7 @@
     <p>客户端与服务器的通行全部采用HTTP请求，数据以json的形式使用POST方法 发送到服务器端，用户名密码认证方式采用HTTP标准的<code>basic authorize</code>认证方式。</p>
     <h3 id="发送一个记录"><span class="header-section-number">2.1</span> 发送一个记录</h3>
     <pre><code>curl -u test:secret \
-        -d &#39;{&quot;altitude&quot;: 23.456, &quot;latitude&quot;: 51.48, &quot;longtitude&quot;: 124.9}&#39;\
+        -d &#39;{&quot;altitude&quot;: 23.456, &quot;latitude&quot;: 51.48, &quot;longitude&quot;: 124.9}&#39;\
         -H &quot;Content-Type: application/json&quot; \
         -v localhost:9000/api/postrecord</code></pre>
     <p>Json数据中可以包含的字段有：</p>
@@ -30,7 +30,7 @@
     <td align="center">浮点数</td>
     </tr>
     <tr class="odd">
-    <td align="center">longtitude</td>
+    <td align="center">longitude</td>
     <td align="center">经度</td>
     <td align="center">浮点数</td>
     </tr>

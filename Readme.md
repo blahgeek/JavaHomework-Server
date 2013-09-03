@@ -19,7 +19,7 @@ Recorder是一个记录安卓用户地理位置的服务，分为服务器端和
 ## 发送一个记录
 
     curl -u test:secret \
-        -d '{"altitude": 23.456, "latitude": 51.48, "longtitude": 124.9}'\
+        -d '{"altitude": 23.456, "latitude": 51.48, "longitude": 124.9}'\
         -H "Content-Type: application/json" \
         -v localhost:9000/api/postrecord
 
@@ -29,7 +29,7 @@ Json数据中可以包含的字段有：
 ----------- --------------- -----------------
  altitude     海拔（米）      浮点数
  latitude     维度            浮点数
- longtitude   经度            浮点数
+ longitude   经度            浮点数
  speed       速度（米每秒）   浮点数
  accuracy    精度（米）       浮点数
 

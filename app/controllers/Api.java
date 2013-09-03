@@ -43,8 +43,8 @@ public class Api extends Controller {
         if(alt != null) rec.altitude = alt.getDoubleValue();
         JsonNode lat = json.get("latitude");
         if(lat != null) rec.latitude = lat.getDoubleValue();
-        JsonNode lon = json.get("longtitude");
-        if(lon != null) rec.longtitude = lon.getDoubleValue();
+        JsonNode lon = json.get("longitude");
+        if(lon != null) rec.longitude = lon.getDoubleValue();
         JsonNode spe = json.get("speed");
         if(spe != null) rec.speed = spe.getDoubleValue();
         JsonNode acc = json.get("accuracy");
