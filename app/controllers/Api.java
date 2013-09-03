@@ -62,6 +62,7 @@ public class Api extends Controller {
         if(rec == null || !rec.user.username.equals(request().username())) 
             return error("invalid id");
         JsonNode json = request().body().asJson();
+        if(json == null) return error("invalid data");
         String bin_s = json.findPath("photo").getTextValue();
         if(bin_s == null || bin_s.length() == 0)
             return error("photo field requied");
