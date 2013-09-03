@@ -6,6 +6,8 @@
 GET     /                           controllers.Application.index()
 POST    /                           controllers.Application.filterIndex()
 
+GET     /about                      controllers.Application.about()
+
 GET     /login                      controllers.Application.login()
 POST    /auth                       controllers.Application.auth()
 GET     /logout                     controllers.Application.logout()

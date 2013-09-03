@@ -20,7 +20,7 @@
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
           <li @if(active.equals("home")){class="active"}><a href="@routes.Application.index()">Home</a></li>
-          <li @if(active.equals("about")){class="active"}><a href="#">About</a></li>
+          <li @if(active.equals("about")){class="active"}><a href="@routes.Application.about()">About</a></li>
           @if(login){
           <li @if(active.equals("signup")){class="active"}>
               <a href="@routes.Application.signup()">SignUp</a></li>

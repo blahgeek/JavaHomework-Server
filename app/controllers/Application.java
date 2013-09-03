@@ -79,6 +79,10 @@ public class Application extends Controller {
         return ok(signup.render(loginForm));
     }
 
+    public static Result about(){
+        return ok(about.render());
+    }
+
     public static Result postsignup() {
         Form<User> form = loginForm.bindFromRequest();
         if(form.hasErrors()){

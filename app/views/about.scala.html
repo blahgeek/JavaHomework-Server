@@ -1,0 +1,77 @@
+@main("About this site", false, "about") {
+    <h2 id="介绍"><span class="header-section-number">1</span> 介绍</h2>
+    <p>Recorder是一个记录安卓用户地理位置的服务，分为服务器端和客户端。 客户端安装在安卓手机上，负责定时发送地理位置信息至服务器端，并且允许用户添加照片。 服务器端接收客户端的请求，并将结果通过网页的形式展现出来，展现形式包括列表和Google地图。</p>
+    <p>主页内容为用户已经上传的地理位置信息，可以通过右上角选择以列表方式或者地图方式显示。 主页左上角可以通过起止时间进行查询。</p>
+    <h2 id="与客户端通信的api"><span class="header-section-number">2</span> 与客户端通信的API</h2>
+    <p>客户端与服务器的通行全部采用HTTP请求，数据以json的形式使用POST方法 发送到服务器端，用户名密码认证方式采用HTTP标准的<code>basic authorize</code>认证方式。</p>
+    <h3 id="发送一个记录"><span class="header-section-number">2.1</span> 发送一个记录</h3>
+    <pre><code>curl -u test:secret \
+        -d &#39;{&quot;altitude&quot;: 23.456, &quot;latitude&quot;: 51.48, &quot;longtitude&quot;: 124.9}&#39;\
+        -H &quot;Content-Type: application/json&quot; \
+        -v localhost:9000/api/postrecord</code></pre>
+    <p>Json数据中可以包含的字段有：</p>
+    <table class="table">
+    <thead>
+    <tr class="header">
+    <th align="center">字段</th>
+    <th align="center">含义</th>
+    <th align="center">数据类型</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td align="center">altitude</td>
+    <td align="center">海拔（米）</td>
+    <td align="center">浮点数</td>
+    </tr>
+    <tr class="even">
+    <td align="center">latitude</td>
+    <td align="center">维度</td>
+    <td align="center">浮点数</td>
+    </tr>
+    <tr class="odd">
+    <td align="center">longtitude</td>
+    <td align="center">经度</td>
+    <td align="center">浮点数</td>
+    </tr>
+    <tr class="even">
+    <td align="center">speed</td>
+    <td align="center">速度（米每秒）</td>
+    <td align="center">浮点数</td>
+    </tr>
+    <tr class="odd">
+    <td align="center">accuracy</td>
+    <td align="center">精度（米）</td>
+    <td align="center">浮点数</td>
+    </tr>
+    </tbody>
+    </table>
+    <p>服务器将返回以json表示的结果，如下。结果中包含该记录的ID以及是否成功。</p>
+    <pre><code>{&quot;result&quot;:&quot;ok&quot;, &quot;id&quot;:42}</code></pre>
+    <h3 id="给一条记录添加图片"><span class="header-section-number">2.2</span> 给一条记录添加图片</h3>
+    <p>图片以base64编码的形式通过json上传，图片格式统一为JPG（<code>image/jpeg</code>）。</p>
+    <pre><code>curl -u test:secret \
+        -d &#39;{&quot;photo&quot;: &quot;_base64_here_&quot;}&#39;\
+        -H &quot;Content-Type: application/json&quot; \
+        -v localhost:9000/api/addphoto/123</code></pre>
+    <p>地址的最后<code>123</code>表示要将图片添加到的记录的ID，由发送记录后服务器返回的json中得到。</p>
+    <p>该请求返回的结果：</p>
+    <pre><code>{&quot;result&quot;:&quot;ok&quot;}</code></pre>
+    <p>错误时将返回结果：</p>
+    <pre><code>{&quot;result&quot;:&quot;error&quot;,&quot;message&quot;:&quot;invalid data&quot;}</code></pre>
+    <h2 id="使用的框架及设计等"><span class="header-section-number">3</span> 使用的框架及设计等</h2>
+    <p>该作业在不同方面基于数个框架、使用了很多开源库来进行快速的开发和部署。</p>
+    <p>后端：</p>
+    <ul>
+    <li>Play Framework: 一个MVC模式的Web开发框架</li>
+    <li>H2 DataBase: 一个免费的数据库引擎</li>
+    <li>jacson提供的json解析库</li>
+    </ul>
+    <p>前端：</p>
+    <ul>
+    <li>页面的UI基于bootstrap</li>
+    <li>地图显示调用了Google Maps API v3</li>
+    <li>jQuery</li>
+    </ul>
+}
+
