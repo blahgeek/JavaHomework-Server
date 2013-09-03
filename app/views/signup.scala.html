@@ -6,7 +6,7 @@
 
 <div class="container-narrow" style="max-width: 350px; margin-left: 70px">
     
-    @form(routes.Application.postsignup(), 'class -> "form-horizontal"){
+    @form(routes.Application.postsignup(), 'class -> "form-horizontal", 'id -> "signup-form"){
         <div class="control-group">
             <div class="controls">
             @if(flash.contains("error")){
@@ -19,7 +19,12 @@
         </div>
         @inputText(loginForm("username"), '_label -> "Username")
         @inputPassword(loginForm("password"), '_label -> "Password")
-        @inputPassword(loginForm("password"), '_label -> "Repeat", 'id -> "password-repeat")
+        <div class="control-group">
+            <label class="control-label" for="password_repeat"> Repeat </label>
+            <div class="controls">
+                <input type="password" id="password_repeat" name="password_repeat">
+            </div>
+        </div>
         <div class="control-group">
             <div class="controls">
             <input type="submit" value="Submit" 
@@ -28,6 +33,18 @@
             </div>
         </div>
     }
+
+    <script type="text/javascript">
+        $("#signup-form").validate({
+            rules: {
+                username: "required", 
+                password: "required", 
+                password_repeat: {
+                    equalTo: "#password"
+                }
+            }
+        });
+    </script>
 
 </div>
     
