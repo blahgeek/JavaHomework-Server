@@ -11,6 +11,12 @@ Recorder是一个记录安卓用户地理位置的服务，分为服务器端和
 主页内容为用户已经上传的地理位置信息，可以通过右上角选择以列表方式或者地图方式显示。
 主页左上角可以通过起止时间进行查询。
 
+如何运行：
+
+- 安装[Play Framework](http://www.playframework.com/)
+- 在当前目录下运行`play run`
+- 访问`http://localhost:9000`，可能需要点击`Apply the script`
+
 # 与客户端通信的API
 
 客户端与服务器的通行全部采用HTTP请求，数据以json的形式使用POST方法
